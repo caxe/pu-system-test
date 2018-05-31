@@ -1,0 +1,29 @@
+﻿@{
+	ViewBag.Title = "ManageRoleToUser";
+}
+
+<h2>Manage Role To User</h2>
+
+@using (Html.BeginForm("AddRoleToUser", "Roles"))
+{
+	<div class="form-horizontal">
+		<div class="form-group">
+			<label class="control-label col-md-2">UserName</label>
+			<div class="col-md-2">
+				@Html.TextBox("UserName", "", new { @class = "form-control" })
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label col-md-2">RoleName</label>
+			<div class="col-md-2">
+				@Html.DropDownList("RoleName", (IEnumerable<SelectListItem>)ViewBag.ListRoleName, new { @class = "form-control" })
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-md-offset-2 col-md-2">
+				<input type="submit" value="Save" class="btn btn-default" />
+			</div>
+		</div>
+	</div>
+}
