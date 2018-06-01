@@ -10,12 +10,12 @@ using pu_system_test.Models;
 
 namespace pu_system_test.Controllers
 {
+	[Authorize(Roles = "Admin")]
 	public class RolesController : Controller
 	{
 		ApplicationDbContext context = new ApplicationDbContext();
 
 		// GET: Roles
-		[Authorize(Roles = "Admin")]
 		public ActionResult Index()
 		{
 			var roles = context.Roles.ToList();
@@ -23,7 +23,6 @@ namespace pu_system_test.Controllers
 		}
 
 		// GET: Roles/Create
-		[Authorize(Roles = "Admin")]
 		public ActionResult Create()
 		{
 			return View();
@@ -31,7 +30,6 @@ namespace pu_system_test.Controllers
 
 		// POST: Roles/Create
 		[HttpPost]
-		[Authorize(Roles = "Admin")]
 		public ActionResult Create(FormCollection collection)
 		{
 			try
@@ -50,7 +48,6 @@ namespace pu_system_test.Controllers
 		}
 
 		// GET: Roles/Edit/5
-		[Authorize(Roles = "Admin")]
 		public ActionResult Edit(string id)
 		{
 			if (String.IsNullOrEmpty(id))
@@ -68,7 +65,6 @@ namespace pu_system_test.Controllers
 
 		// POST: Roles/Edit/5
 		[HttpPost]
-		[Authorize(Roles = "Admin")]
 		public ActionResult Edit(IdentityRole role)
 		{
 			try
@@ -87,7 +83,6 @@ namespace pu_system_test.Controllers
 		}
 
 		// GET: Roles/Delete/5
-		[Authorize(Roles = "Admin")]
 		public ActionResult Delete(string id)
 		{
 			if (String.IsNullOrEmpty(id))
@@ -106,7 +101,6 @@ namespace pu_system_test.Controllers
 		// POST: Roles/Delete/5
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		[Authorize(Roles = "Admin")]
 		public ActionResult Delete(string id, FormCollection collection)
 		{
 			try
@@ -125,25 +119,25 @@ namespace pu_system_test.Controllers
 				return View();
 			}
 		}
-
-		[Authorize(Roles = "Admin")]
+		
 		public ActionResult ManageRoleToUser()
 		{
+			var listUser = context.Users.Select(u => new SelectListItem { Text = u.Email, Value = u.Email });
 			var listRole = context.Roles.Select(e => new SelectListItem { Text = e.Name, Value = e.Name });
 			var filteredListRole = listRole.Where(role => role.Value != "Admin");
+			ViewBag.ListUserName = listUser;
 			ViewBag.ListRoleName = filteredListRole;
 
 			return View();
 		}
-
-		[Authorize(Roles = "Admin")]
+		
 		public ActionResult AddRoleToUser(string UserName, string RoleName)
 		{
 			IdentityUser user = context.Users.Where(e => e.UserName == UserName).FirstOrDefault();
 
 			var _UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 			_UserManager.AddToRole(user.Id, RoleName);
-
+			
 			var listRole = context.Roles.Select(e => new SelectListItem { Text = e.Name, Value = e.Name });
 			var filteredListRole = listRole.Where(role => role.Value != "Admin");
 			ViewBag.ListRoleName = filteredListRole;

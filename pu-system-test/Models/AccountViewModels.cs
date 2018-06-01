@@ -81,6 +81,7 @@ namespace pu_system_test.Models
 		public string ConfirmPassword { get; set; }
 
 		[Required]
+		[Display(Name = "Select Your User Type")]
 		public string RoleName { get; set; }
 	}
 

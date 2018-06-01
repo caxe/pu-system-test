@@ -17,7 +17,6 @@ namespace pu_system_test.Controllers
 	public class AccountController : Controller
 	{
 		ApplicationDbContext context;
-		RolesController roles;
 		private ApplicationSignInManager _signInManager;
 		private ApplicationUserManager _userManager;
 
