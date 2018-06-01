@@ -1,1 +1,24 @@
-﻿
+﻿@model pu_system_test.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-signin text-center", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <h1 class="h3 mb-3 font-weight-normal">Регистрация</h1>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.TextBoxFor(m => m.Email, htmlAttributes: new { placeholder = "Имейл", @class = "form-control" })
+    @Html.PasswordFor(m => m.Password, htmlAttributes: new { placeholder = "Парола", @class = "form-control" })
+    @Html.PasswordFor(m => m.ConfirmPassword, htmlAttributes: new { placeholder = "Повтори парола", @class = "form-control" })
+    @Html.DropDownList("RoleName", (IEnumerable<SelectListItem>)ViewBag.ListRoleName, new { @class = "custom-select" })
+    <button class="btn btn-lg btn-primary btn-block mt-4" type="submit">Регистрация</button>
+}
+<div class="form-signup">
+    Имаш акаунт? <strong>@Html.ActionLink("Впиши се", "Login")</strong>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

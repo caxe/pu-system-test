@@ -1,1 +1,73 @@
 ﻿
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+body {
+    background-color: #4BD1B4;
+}
+
+/* Start login */
+
+.form-signin {
+    width: 100%;
+    max-width: 400px;
+    padding: 30px;
+    margin: auto;
+    margin-top: 50px;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.form-signup {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    margin: auto;
+    margin-top: 20px;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.form-signin .checkbox {
+    font-weight: 400;
+}
+
+.form-signin .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+}
+
+    .form-signin .form-control:focus {
+        z-index: 2;
+    }
+
+.form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.btn-primary {
+    background-color: #4BD1B4;
+    border-color: #4BD1B4;
+}
+
+    .btn-primary:hover {
+        background-color: rgb(34, 192, 158);
+        border-color: rgb(34, 192, 158);
+    }
+
+/* End Login */
