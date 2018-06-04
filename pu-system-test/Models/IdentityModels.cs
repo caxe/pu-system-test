@@ -34,5 +34,6 @@ namespace pu_system_test.Models
         public DbSet<Student> Students { get; set; }
         public DbSet<Internship> Internships { get; set; }
         public DbSet<Practice> Practices { get; set; }
+        public DbSet<UserProfile> userProfiles { get; set; }
     }
 }

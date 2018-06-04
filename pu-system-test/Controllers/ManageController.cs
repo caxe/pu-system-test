@@ -13,6 +13,7 @@ namespace pu_system_test.Controllers
     [Authorize]
     public class ManageController : Controller
     {
+        ApplicationDbContext context = new ApplicationDbContext();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
@@ -66,7 +67,6 @@ namespace pu_system_test.Controllers
             var userId = User.Identity.GetUserId();
             var model = new IndexViewModel
             {
-                //ProfileCreated = 
                 HasPassword = HasPassword(),
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
@@ -334,7 +334,52 @@ namespace pu_system_test.Controllers
             base.Dispose(disposing);
         }
 
-#region Helpers
+        // Get: Profile/Create
+        [Authorize(Roles = "Firm")]
+        public ActionResult CreateProfileFirm()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "Student")]
+        public ActionResult CreateProfileStudent()
+        {
+            return View();
+        }
+
+        // Post: Profile/Create
+        [Authorize(Roles = "Firm")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> CreateProfileFirmAsync([Bind(Include = "FirmName,Address,Description")] Firm firm)
+        {
+            if (ModelState.IsValid)
+            {
+                context.Firms.Add(firm);
+                var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+                var userProfile = context.userProfiles.Where(u => u.UserId == user.Id);
+                context.userProfiles.Add(userProfile);
+                context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(firm);
+        }
+
+        [Authorize(Roles = "Student")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateProfileStudent([Bind(Include = "StudentFN,FirstName,LastName")] Student student)
+        {
+            if (ModelState.IsValid)
+            {
+                context.Students.Add(student);
+                context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(student);
+        }
+
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -364,16 +409,6 @@ namespace pu_system_test.Controllers
             return false;
         }
 
-        //private bool ProfileCreated()
-        //{
-        //    var user = UserManager.FindById(User.Identity.GetUserId());
-        //    if (user != null)
-        //    {
-        //        return user.pro != null;
-        //    }
-        //    return false;
-        //}
-
         private bool HasPhoneNumber()
         {
             var user = UserManager.FindById(User.Identity.GetUserId());
@@ -395,6 +430,6 @@ namespace pu_system_test.Controllers
             Error
         }
 
-#endregion
+        #endregion
     }
 }

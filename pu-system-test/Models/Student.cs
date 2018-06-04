@@ -10,7 +10,9 @@ namespace pu_system_test.Models
     {
         [Key]
         [Required]
-        public int StudentFN { get; set; }
+        [Display(Name = "Faculty Number")]
+        [StringLength(10, MinimumLength = 10)]
+        public string StudentFN { get; set; }
 
         [Required]
         [Display(Name ="Frist name")]

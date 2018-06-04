@@ -205,21 +205,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="GlobalMethods\LoadInternships.cs" />
-    <Compile Include="Migrations\201806010734505_InitialDb.cs" />
-    <Compile Include="Migrations\201806010734505_InitialDb.designer.cs">
-      <DependentUpon>201806010734505_InitialDb.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201806041051379_NewModelsDb.cs" />
-    <Compile Include="Migrations\201806041051379_NewModelsDb.designer.cs">
-      <DependentUpon>201806041051379_NewModelsDb.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201806041059390_FixModelsDb.cs" />
-    <Compile Include="Migrations\201806041059390_FixModelsDb.designer.cs">
-      <DependentUpon>201806041059390_FixModelsDb.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201806041134422_ProfileCreated.cs" />
-    <Compile Include="Migrations\201806041134422_ProfileCreated.Designer.cs">
-      <DependentUpon>201806041134422_ProfileCreated.cs</DependentUpon>
+    <Compile Include="Migrations\201806041537279_UserProfileUserId.cs" />
+    <Compile Include="Migrations\201806041537279_UserProfileUserId.Designer.cs">
+      <DependentUpon>201806041537279_UserProfileUserId.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -229,6 +217,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Practice.cs" />
     <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\UserProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -334,8 +323,9 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\Manage\CreateProfile.cshtml" />
+    <Content Include="Views\Manage\CreateProfileFirm.cshtml" />
     <Content Include="Views\Manage\EditProfile.cshtml" />
+    <Content Include="Views\Manage\CreateProfileStudent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -352,17 +342,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201806010734505_InitialDb.resx">
-      <DependentUpon>201806010734505_InitialDb.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806041051379_NewModelsDb.resx">
-      <DependentUpon>201806041051379_NewModelsDb.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806041059390_FixModelsDb.resx">
-      <DependentUpon>201806041059390_FixModelsDb.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806041134422_ProfileCreated.resx">
-      <DependentUpon>201806041134422_ProfileCreated.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201806041537279_UserProfileUserId.resx">
+      <DependentUpon>201806041537279_UserProfileUserId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -25,13 +25,18 @@
         </dd>
         <dt>Profile:</dt>
         <dd>
-            @if (Model.ProfileCreated)
+            @if (!Model.ProfileCreated && User.IsInRole("Firm"))
             {
-                @Html.ActionLink("Edit profile", "EditProfile")
+                @Html.ActionLink("Add profile", "CreateProfileFirm")
+
+            }
+            else if (!Model.ProfileCreated && User.IsInRole("Student"))
+            {
+                @Html.ActionLink("Add profile", "CreateProfileStudent")
             }
             else
             {
-                @Html.ActionLink("Add profile", "CreateProfile")
+                @Html.ActionLink("Edit profile", "EditProfile")
             }
         </dd>
         @*<dt>External Logins:</dt>
