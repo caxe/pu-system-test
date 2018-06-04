@@ -29,5 +29,10 @@ namespace pu_system_test.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<Firm> Firms { get; set; }
+        public DbSet<Student> Students { get; set; }
+        public DbSet<Internship> Internships { get; set; }
+        public DbSet<Practice> Practices { get; set; }
     }
 }
