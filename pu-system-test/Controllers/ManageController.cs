@@ -66,6 +66,7 @@ namespace pu_system_test.Controllers
             var userId = User.Identity.GetUserId();
             var model = new IndexViewModel
             {
+                //ProfileCreated = 
                 HasPassword = HasPassword(),
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
@@ -362,6 +363,16 @@ namespace pu_system_test.Controllers
             }
             return false;
         }
+
+        //private bool ProfileCreated()
+        //{
+        //    var user = UserManager.FindById(User.Identity.GetUserId());
+        //    if (user != null)
+        //    {
+        //        return user.pro != null;
+        //    }
+        //    return false;
+        //}
 
         private bool HasPhoneNumber()
         {

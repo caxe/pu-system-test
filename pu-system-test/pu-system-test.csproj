@@ -204,9 +204,22 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="GlobalMethods\LoadInternships.cs" />
     <Compile Include="Migrations\201806010734505_InitialDb.cs" />
-    <Compile Include="Migrations\201806010734505_InitialDb.Designer.cs">
+    <Compile Include="Migrations\201806010734505_InitialDb.designer.cs">
       <DependentUpon>201806010734505_InitialDb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806041051379_NewModelsDb.cs" />
+    <Compile Include="Migrations\201806041051379_NewModelsDb.designer.cs">
+      <DependentUpon>201806041051379_NewModelsDb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806041059390_FixModelsDb.cs" />
+    <Compile Include="Migrations\201806041059390_FixModelsDb.designer.cs">
+      <DependentUpon>201806041059390_FixModelsDb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806041134422_ProfileCreated.cs" />
+    <Compile Include="Migrations\201806041134422_ProfileCreated.Designer.cs">
+      <DependentUpon>201806041134422_ProfileCreated.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -321,6 +334,8 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Manage\CreateProfile.cshtml" />
+    <Content Include="Views\Manage\EditProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -331,15 +346,24 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201806010734505_InitialDb.resx">
-      <DependentUpon>201806010734505_InitialDb.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201806010734505_InitialDb.resx">
+      <DependentUpon>201806010734505_InitialDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806041051379_NewModelsDb.resx">
+      <DependentUpon>201806041051379_NewModelsDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806041059390_FixModelsDb.resx">
+      <DependentUpon>201806041059390_FixModelsDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806041134422_ProfileCreated.resx">
+      <DependentUpon>201806041134422_ProfileCreated.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

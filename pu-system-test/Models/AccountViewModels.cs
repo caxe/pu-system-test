@@ -83,7 +83,7 @@ namespace pu_system_test.Models
 		[Required]
 		[Display(Name = "Select Your User Type")]
 		public string RoleName { get; set; }
-	}
+    }
 
 	public class ResetPasswordViewModel
 	{
