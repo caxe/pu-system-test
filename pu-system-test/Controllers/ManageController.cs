@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using pu_system_test.Models;
@@ -351,14 +352,14 @@ namespace pu_system_test.Controllers
         [Authorize(Roles = "Firm")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> CreateProfileFirmAsync([Bind(Include = "FirmName,Address,Description")] Firm firm)
+        public ActionResult CreateProfileFirm([Bind(Include = "FirmName,Address,Description")] Firm firm)
         {
             if (ModelState.IsValid)
             {
                 context.Firms.Add(firm);
-                var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-                var userProfile = context.userProfiles.Where(u => u.UserId == user.Id);
-                context.userProfiles.Add(userProfile);
+                //var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+                //var userProfile = context.userProfiles.Where(u => u.UserId == user.Id);
+                //context.UserProfiles.Add(userProfile);
                 context.SaveChanges();
                 return RedirectToAction("Index");
             }

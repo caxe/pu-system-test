@@ -9,8 +9,6 @@ namespace pu_system_test.Controllers
 {
 	public class HomeController : Controller
 	{
-        ApplicationDbContext context;
-
         public ActionResult Index()
 		{
 			return View();

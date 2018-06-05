@@ -34,7 +34,7 @@
             {
                 @Html.ActionLink("Add profile", "CreateProfileStudent")
             }
-            else
+            else if (Model.ProfileCreated && User.IsInRole("Firm"))
             {
                 @Html.ActionLink("Edit profile", "EditProfile")
             }
