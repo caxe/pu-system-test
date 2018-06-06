@@ -4,6 +4,7 @@
     ViewBag.Title = "Log in";
 }
 
+
 @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-signin text-center", role = "form" }))
 {
     @Html.AntiForgeryToken()
@@ -19,6 +20,7 @@
 <div class="form-signup">
     Нямаш акаунт? <strong>@Html.ActionLink("Регистрирай се", "Register")</strong>
 </div>
+
 
 
 @*<div class="row">
