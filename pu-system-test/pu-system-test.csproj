@@ -205,9 +205,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="GlobalMethods\LoadInternships.cs" />
-    <Compile Include="Migrations\201806041537279_UserProfileUserId.cs" />
-    <Compile Include="Migrations\201806041537279_UserProfileUserId.Designer.cs">
-      <DependentUpon>201806041537279_UserProfileUserId.cs</DependentUpon>
+    <Compile Include="Migrations\201806060729370_whatever.cs" />
+    <Compile Include="Migrations\201806060729370_whatever.Designer.cs">
+      <DependentUpon>201806060729370_whatever.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -342,8 +342,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201806041537279_UserProfileUserId.resx">
-      <DependentUpon>201806041537279_UserProfileUserId.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201806060729370_whatever.resx">
+      <DependentUpon>201806060729370_whatever.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

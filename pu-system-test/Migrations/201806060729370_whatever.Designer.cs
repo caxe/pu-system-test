@@ -7,13 +7,13 @@ namespace pu_system_test.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class UserProfileUserId : IMigrationMetadata
+    public sealed partial class whatever : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(UserProfileUserId));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(whatever));
         
         string IMigrationMetadata.Id
         {
-            get { return "201806041537279_UserProfileUserId"; }
+            get { return "201806060729370_whatever"; }
         }
         
         string IMigrationMetadata.Source
