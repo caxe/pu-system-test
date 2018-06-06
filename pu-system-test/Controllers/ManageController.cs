@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -68,6 +69,7 @@ namespace pu_system_test.Controllers
             var userId = User.Identity.GetUserId();
             var model = new IndexViewModel
             {
+                ProfileCreated = ProfileCreated(),
                 HasPassword = HasPassword(),
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
@@ -352,14 +354,17 @@ namespace pu_system_test.Controllers
         [Authorize(Roles = "Firm")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateProfileFirm([Bind(Include = "FirmName,Address,Description")] Firm firm)
+        public async Task<ActionResult> CreateProfileFirm([Bind(Include = "FirmName,Address,Description")] Firm firm)
         {
             if (ModelState.IsValid)
             {
                 context.Firms.Add(firm);
-                //var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-                //var userProfile = context.userProfiles.Where(u => u.UserId == user.Id);
-                //context.UserProfiles.Add(userProfile);
+                var currentUser = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+                var user = context.Users.First(x => x.Id == currentUser.Id);
+                user.ProfileCreated = true;
+                context.Users.Attach(user);
+                var entry = context.Entry(user);
+                entry.Property(e => e.ProfileCreated).IsModified = true;
                 context.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -369,11 +374,17 @@ namespace pu_system_test.Controllers
         [Authorize(Roles = "Student")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateProfileStudent([Bind(Include = "StudentFN,FirstName,LastName")] Student student)
+        public async Task<ActionResult> CreateProfileStudent([Bind(Include = "StudentFN,FirstName,LastName")] Student student)
         {
             if (ModelState.IsValid)
             {
                 context.Students.Add(student);
+                var currentUser = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+                var user = context.Users.First(x => x.Id == currentUser.Id);
+                user.ProfileCreated = true;
+                context.Users.Attach(user);
+                var entry = context.Entry(user);
+                entry.Property(e => e.ProfileCreated).IsModified = true;
                 context.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -406,6 +417,16 @@ namespace pu_system_test.Controllers
             if (user != null)
             {
                 return user.PasswordHash != null;
+            }
+            return false;
+        }
+
+        private bool ProfileCreated()
+        {
+            var user = UserManager.FindById(User.Identity.GetUserId());
+            if (user != null)
+            {
+                return user.ProfileCreated;
             }
             return false;
         }
