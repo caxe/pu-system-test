@@ -5,10 +5,12 @@
 }
 
 <h2>Практики</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
 <table class="table">
     <tr>
         <th>
@@ -23,23 +25,38 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.PracticeName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EndDate)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PracticeId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PracticeId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PracticeId })
-        </td>
-    </tr>
-}
-
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PracticeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            @if (User.IsInRole("Admin"))
+            {
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.PracticeId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.PracticeId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.PracticeId })
+                </td>
+            }
+            @if (User.IsInRole("Firm"))
+            {
+                <td>
+                    <a href="Practices/Join">
+                        <input type="button" value="Join" />
+                    </a>
+                </td>
+            }
+        </tr>
+    }
 </table>
+
+
+
+

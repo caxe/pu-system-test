@@ -20,13 +20,13 @@
                     <li class="nav-item">
                         @Html.ActionLink("Начало", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
                     </li>
+                    @Html.ActionLink("Практики", "Index", "Practices", new { area = "" }, new { @class = "nav-link" })
                     @if (User.IsInRole("Firm"))
                     {
                         @Html.ActionLink("Стажове", "Index", "Internships", new { area = "" }, new { @class = "nav-link" })
                     }
                     @if (User.IsInRole("Admin"))
                     {
-                        @Html.ActionLink("Практики", "Index", "Practices", new { area = "" }, new { @class = "nav-link" })
                         @Html.ActionLink("Роли", "Index", "Roles", new { area = "" }, new { @class = "nav-link" })
                         @Html.ActionLink("Управление на роли", "ManageRoleToUser", "Roles", new { area = "" }, new { @class = "nav-link" })
                     }

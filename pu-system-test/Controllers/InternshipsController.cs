@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
@@ -45,9 +46,12 @@ namespace pu_system_test.Controllers
         {
             var currentUser = await UserManager.FindByIdAsync(User.Identity.GetUserId());
             var user = context.Users.First(x => x.Id == currentUser.Id);
+            var input = user.UserName;
+            var pattern = @"@";
+            String[] elements = Regex.Split(input, pattern);
             //ViewBag.FirmId = context.Firms.Where(f => f.FirmName == user.UserName);
             ViewBag.FirmId = new SelectList(context.Firms, "FirmId", "FirmName")
-                .Where(i => i.Text == user.UserName);
+                .Where(i => i.Text == elements[0]);
             return View();
         }
 
@@ -60,6 +64,9 @@ namespace pu_system_test.Controllers
         {
             var currentUser = await UserManager.FindByIdAsync(User.Identity.GetUserId());
             var user = context.Users.First(x => x.Id == currentUser.Id);
+            var input = user.UserName;
+            var pattern = @"@";
+            String[] elements = Regex.Split(input, pattern);
             if (ModelState.IsValid)
             {
                 
@@ -69,12 +76,12 @@ namespace pu_system_test.Controllers
             }
             //ViewBag.FirmId = context.Firms.Where(f => f.FirmName == user.UserName);
             ViewBag.FirmId = new SelectList(context.Firms, "FirmId", "FirmName")
-                .Where(i => i.Text == user.UserName);
+                .Where(i => i.Text == elements[0]);
             return View(internship);
         }
 
         // GET: Internships/Edit/5
-        public ActionResult Edit(int? id)
+        public async System.Threading.Tasks.Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -85,7 +92,13 @@ namespace pu_system_test.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.FirmId = new SelectList(context.Firms, "FirmId", "FirmName", internship.FirmId);
+            var currentUser = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            var user = context.Users.First(x => x.Id == currentUser.Id);
+            var input = user.UserName;
+            var pattern = @"@";
+            String[] elements = Regex.Split(input, pattern);
+            ViewBag.FirmId = new SelectList(context.Firms, "FirmId", "FirmName")
+                .Where(i => i.Text == elements[0]);
             return View(internship);
         }
 
@@ -94,7 +107,7 @@ namespace pu_system_test.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "InternshipId,FirmId,Spots,Technologies")] Internship internship)
+        public async System.Threading.Tasks.Task<ActionResult> Edit([Bind(Include = "InternshipId,FirmId,Spots,Technologies")] Internship internship)
         {
             if (ModelState.IsValid)
             {
@@ -102,7 +115,13 @@ namespace pu_system_test.Controllers
                 context.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.FirmId = new SelectList(context.Firms, "FirmId", "FirmName", internship.FirmId);
+            var currentUser = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            var user = context.Users.First(x => x.Id == currentUser.Id);
+            var input = user.UserName;
+            var pattern = @"@";
+            String[] elements = Regex.Split(input, pattern);
+            ViewBag.FirmId = new SelectList(context.Firms, "FirmId", "FirmName")
+                .Where(i => i.Text == elements[0]);
             return View(internship);
         }
 

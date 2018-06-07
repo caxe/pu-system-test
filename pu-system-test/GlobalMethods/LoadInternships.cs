@@ -14,7 +14,7 @@ namespace pu_system_test.GlobalMethods
         public SelectList LoadDropDownInternship(object selectedInternship = null)
         {
             var listInternship = from i in context.Internships select i;
-            return new SelectList(listInternship, "InternshipId", "Firm", selectedInternship);
+            return new SelectList(listInternship, "InternshipId", "FirmId", selectedInternship);
         }
     }
 }
