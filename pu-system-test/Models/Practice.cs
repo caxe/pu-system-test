@@ -27,7 +27,7 @@ namespace pu_system_test.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime EndDate { get; set; }
 
-        public int InternshipId { get; set; }
+        public int? InternshipId { get; set; }
         public virtual Internship Internships { get; set; }
     }
 }

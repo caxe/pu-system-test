@@ -199,20 +199,18 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InternshipsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PracticesController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Extensions\IdentityExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="GlobalMethods\LoadInternships.cs" />
-    <Compile Include="Migrations\201806060729370_whatever.cs" />
-    <Compile Include="Migrations\201806060729370_whatever.Designer.cs">
-      <DependentUpon>201806060729370_whatever.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201806061102041_FixUserTable.cs" />
-    <Compile Include="Migrations\201806061102041_FixUserTable.Designer.cs">
-      <DependentUpon>201806061102041_FixUserTable.cs</DependentUpon>
+    <Compile Include="Migrations\201806070921014_Practices.cs" />
+    <Compile Include="Migrations\201806070921014_Practices.Designer.cs">
+      <DependentUpon>201806070921014_Practices.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -328,8 +326,19 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Manage\CreateProfileFirm.cshtml" />
-    <Content Include="Views\Manage\EditProfile.cshtml" />
     <Content Include="Views\Manage\CreateProfileStudent.cshtml" />
+    <Content Include="Views\Manage\EditProfileStudent.cshtml" />
+    <Content Include="Views\Manage\EditProfileFirm.cshtml" />
+    <Content Include="Views\Practices\Create.cshtml" />
+    <Content Include="Views\Practices\Delete.cshtml" />
+    <Content Include="Views\Practices\Details.cshtml" />
+    <Content Include="Views\Practices\Edit.cshtml" />
+    <Content Include="Views\Practices\Index.cshtml" />
+    <Content Include="Views\Internships\Create.cshtml" />
+    <Content Include="Views\Internships\Delete.cshtml" />
+    <Content Include="Views\Internships\Details.cshtml" />
+    <Content Include="Views\Internships\Edit.cshtml" />
+    <Content Include="Views\Internships\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -346,11 +355,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201806060729370_whatever.resx">
-      <DependentUpon>201806060729370_whatever.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806061102041_FixUserTable.resx">
-      <DependentUpon>201806061102041_FixUserTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201806070921014_Practices.resx">
+      <DependentUpon>201806070921014_Practices.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

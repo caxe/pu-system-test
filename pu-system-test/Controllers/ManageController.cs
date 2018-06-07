@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -35,9 +36,9 @@ namespace pu_system_test.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -385,6 +386,48 @@ namespace pu_system_test.Controllers
                 context.Users.Attach(user);
                 var entry = context.Entry(user);
                 entry.Property(e => e.ProfileCreated).IsModified = true;
+                context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(student);
+        }
+
+        // Get: Profile/Edit
+        [Authorize(Roles = "Firm")]
+        public ActionResult EditProfileFirm()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "Student")]
+        public ActionResult EditProfileStudent()
+        {
+            return View();
+        }
+
+        // Post: Profile/Edit
+        [Authorize(Roles = "Firm")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditProfileFirm([Bind(Include = "FirmId,FirmName,Address,Description")] Firm firm)
+        {
+            if (ModelState.IsValid)
+            {
+                context.Entry(firm).State = EntityState.Modified;
+                context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(firm);
+        }
+
+        [Authorize(Roles = "Student")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditProfileStudent([Bind(Include = "StudentFN,FirstName,LastName")] Student student)
+        {
+            if (ModelState.IsValid)
+            {
+                context.Entry(student).State = EntityState.Modified;
                 context.SaveChanges();
                 return RedirectToAction("Index");
             }

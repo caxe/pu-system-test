@@ -7,13 +7,13 @@ namespace pu_system_test.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class FixUserTable : IMigrationMetadata
+    public sealed partial class Practices : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(FixUserTable));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Practices));
         
         string IMigrationMetadata.Id
         {
-            get { return "201806061102041_FixUserTable"; }
+            get { return "201806070921014_Practices"; }
         }
         
         string IMigrationMetadata.Source

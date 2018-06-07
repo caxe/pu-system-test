@@ -1,0 +1,42 @@
+﻿@model pu_system_test.Models.Internship
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Internship</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Firm.FirmName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Firm.FirmName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Spots)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Spots)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Technologies)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Technologies)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.InternshipId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
