@@ -6,13 +6,17 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using pu_system_test.Models;
 
 namespace pu_system_test.Controllers
 {
+    [Authorize(Roles = "Firm")]
     public class InternshipsController : Controller
     {
         private ApplicationDbContext context = new ApplicationDbContext();
+        private ApplicationUserManager _userManager;
 
         // GET: Internships
         public ActionResult Index()
@@ -37,9 +41,13 @@ namespace pu_system_test.Controllers
         }
 
         // GET: Internships/Create
-        public ActionResult Create()
+        public async System.Threading.Tasks.Task<ActionResult> Create()
         {
-            ViewBag.FirmId = new SelectList(context.Firms, "FirmId", "FirmName");
+            var currentUser = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            var user = context.Users.First(x => x.Id == currentUser.Id);
+            //ViewBag.FirmId = context.Firms.Where(f => f.FirmName == user.UserName);
+            ViewBag.FirmId = new SelectList(context.Firms, "FirmId", "FirmName")
+                .Where(i => i.Text == user.UserName);
             return View();
         }
 
@@ -48,16 +56,20 @@ namespace pu_system_test.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "InternshipId,FirmId,Spots,Technologies")] Internship internship)
+        public async System.Threading.Tasks.Task<ActionResult> Create([Bind(Include = "InternshipId,FirmId,Spots,Technologies")] Internship internship)
         {
+            var currentUser = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            var user = context.Users.First(x => x.Id == currentUser.Id);
             if (ModelState.IsValid)
             {
+                
                 context.Internships.Add(internship);
                 context.SaveChanges();
                 return RedirectToAction("Index");
             }
-
-            ViewBag.FirmId = new SelectList(context.Firms, "FirmId", "FirmName", internship.FirmId);
+            //ViewBag.FirmId = context.Firms.Where(f => f.FirmName == user.UserName);
+            ViewBag.FirmId = new SelectList(context.Firms, "FirmId", "FirmName")
+                .Where(i => i.Text == user.UserName);
             return View(internship);
         }
 
@@ -127,6 +139,18 @@ namespace pu_system_test.Controllers
                 context.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
         }
     }
 }
