@@ -1,18 +1,16 @@
 ﻿@model pu_system_test.Models.Internship
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Изтриване на стаж";
 }
 
-<h2>Delete</h2>
+<h2 class="text-center pt-3 pb-2">Изтриване на стаж</h2>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Internship</h4>
-    <hr />
+@*<h3 class="text-center pt-3 pb-2">Сигурен ли си, че искаш да изтриеш този стаж?</h3>*@
+<div class="box text-center">
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Firm.FirmName)
+            <label class="control-label">Име</label>
         </dt>
 
         <dd>
@@ -20,7 +18,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Spots)
+            <label class="control-label">Места</label>
         </dt>
 
         <dd>
@@ -28,7 +26,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Technologies)
+            <label class="control-label">Технологии</label>
         </dt>
 
         <dd>
@@ -37,12 +35,17 @@
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    <hr />
+
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-12 text-center">
+                <input type="submit" value="Изтрий" class="btn btn-danger pl-3 pr-3" />
+                @Html.ActionLink("Назад", "Index", new { area = "" }, new { @class = "btn btn-secondary pl-4 pr-4" })
+            </div>
         </div>
     }
 </div>

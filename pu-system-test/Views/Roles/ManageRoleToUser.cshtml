@@ -1,29 +1,31 @@
 ﻿@{
-	ViewBag.Title = "ManageRoleToUser";
+	ViewBag.Title = "Управление на потребителски роли";
 }
 
-<h2>Manage Role To User</h2>
+<h2  class="text-center pt-3 pb-2">Управление на потребителски роли</h2>
 
 @using (Html.BeginForm("AddRoleToUser", "Roles"))
 {
-	<div class="form-horizontal">
+	<div class="form-horizontal  col-md-8 mx-auto">
+        <hr />
 		<div class="form-group">
-			<label class="control-label col-md-2">UserName</label>
-			<div class="col-md-2">
+			<label class="control-label col-md-5">Имейл на потребител</label>
+			<div class="col-md-12">
 				@Html.DropDownList("UserName", (IEnumerable<SelectListItem>)ViewBag.ListUserName, new { @class = "form-control" })
 			</div>
 		</div>
 		<div class="form-group">
-			<label class="control-label col-md-2">RoleName</label>
-			<div class="col-md-2">
+			<label class="control-label col-md-5">Име на роля</label>
+			<div class="col-md-12">
 				@Html.DropDownList("RoleName", (IEnumerable<SelectListItem>)ViewBag.ListRoleName, new { @class = "form-control" })
 			</div>
 		</div>
 
-		<div class="form-group">
-			<div class="col-md-offset-2 col-md-2">
-				<input type="submit" value="Save" class="btn btn-default" />
-			</div>
-		</div>
+        <div class="form-group mt-5">
+            <div class="col-md-offset-2 col-md-12 text-center">
+                <input type="submit" value="Запиши" class="btn btn-success pl-5 pr-5" />
+                @Html.ActionLink("Отказ", "Index", new { area = "" }, new { @class = "btn btn-secondary pl-5 pr-5" })
+            </div>
+        </div>
 	</div>
 }

@@ -4,25 +4,31 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Практики</h2>
+<h2 class="text-center pt-3 pb-2">Практики</h2>
+<hr />
 @if (User.IsInRole("Admin"))
 {
     <p>
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Нова практика", "Create", new { area = "" }, new { @class = "btn btn-success" })
     </p>
 }
-<table class="table">
+<table class="table table-dark">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.PracticeName)
+        <th scope="col">
+            @*@Html.DisplayNameFor(model => model.PracticeName)*@
+            Практика
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StartDate)
+        <th scope="col">
+            @*@Html.DisplayNameFor(model => model.StartDate)*@
+            Начална дата
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EndDate)
+        <th scope="col">
+            @*@Html.DisplayNameFor(model => model.EndDate)*@
+            Крайна дата
         </th>
-        <th></th>
+        <th scope="col">
+
+        </th>
     </tr>
 
     @foreach (var item in Model)
@@ -40,16 +46,16 @@
             @if (User.IsInRole("Admin"))
             {
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.PracticeId }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.PracticeId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.PracticeId })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.PracticeId }, new { @class = "btn btn-secondary btn-sm pl-3 pr-3" })
+                    @Html.ActionLink("Details", "Details", new { id = item.PracticeId }, new { @class = "btn btn-info btn-sm pl-3 pr-3" })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.PracticeId }, new { @class = "btn btn-danger btn-sm pl-3 pr-3" })
                 </td>
             }
             @if (User.IsInRole("Firm"))
             {
                 <td>
                     <a href="Practices/Join">
-                        <input type="button" value="Join" />
+                        <input class="btn btn-primary btn-sm pl-3 pr-3" type="button" value="Влез" />
                     </a>
                 </td>
             }

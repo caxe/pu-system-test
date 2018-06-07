@@ -1,27 +1,26 @@
 ﻿@model Microsoft.AspNet.Identity.EntityFramework.IdentityRole
 @{
-	ViewBag.Title = "Edit Role";
+	ViewBag.Title = "Редактирай роля";
 }
+
+<h2 class="text-center pt-3 pb-2">Редактирай роля</h2>
 
 @using (Html.BeginForm())
 {
-	<div class="form-horizontal">
-		<h4>Edit Role</h4>
+	<div class="form-horizontal col-md-8 mx-auto">
+        <hr />
 		<div class="form-group">
-			<label class="control-label col-md-2">Role Name</label>
-			<div class="col-md-2">
+			<label class="control-label col-md-2">Име</label>
+			<div class="col-md-12">
 				@Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
 			</div>
 		</div>
-		<div class="form-group">
-			<div class="col-md-offset-2 col-md-2">
-				<input type="submit" value="Save" class="btn btn-default" />
-			</div>
-		</div>
+        <div class="form-group mt-5">
+            <div class="col-md-offset-2 col-md-12 text-center">
+                <input type="submit" value="Запиши" class="btn btn-success pl-5 pr-5" />
+                @Html.ActionLink("Отказ", "Index", new { area = "" }, new { @class = "btn btn-secondary pl-5 pr-5" })
+            </div>
+        </div>
 	</div>
 }
-
-<div>
-	@Html.ActionLink("Back to List", "Index")
-</div>
 

@@ -4,23 +4,28 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Стажове</h2>
-
+<h2 class="text-center pt-3 pb-2">Стажове</h2>
+<hr />
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Нов стаж", "Create", new { area = "" }, new { @class = "btn btn-success" })
 </p>
-<table class="table">
+<table class="table table-dark">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Firm.FirmName)
+        <th scope="col">
+            @*@Html.DisplayNameFor(model => model.Firm.FirmName)*@
+            Фирма
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Spots)
+        <th scope="col">
+            @*@Html.DisplayNameFor(model => model.Spots)*@
+            Места
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Technologies)
+        <th scope="col">
+            @*@Html.DisplayNameFor(model => model.Technologies)*@
+            Технологии
         </th>
-        <th></th>
+        <th scope="col">
+
+        </th>
     </tr>
 
 @foreach (var item in Model) {
@@ -35,9 +40,9 @@
             @Html.DisplayFor(modelItem => item.Technologies)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.InternshipId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.InternshipId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.InternshipId })
+            @Html.ActionLink("Edit", "Edit", new { id = item.InternshipId }, new { @class = "btn btn-secondary btn-sm pl-3 pr-3" })
+            @Html.ActionLink("Details", "Details", new { id = item.InternshipId }, new { @class = "btn btn-info btn-sm pl-3 pr-3" })
+            @Html.ActionLink("Delete", "Delete", new { id = item.InternshipId }, new { @class = "btn btn-danger btn-sm pl-3 pr-3" })
         </td>
     </tr>
 }

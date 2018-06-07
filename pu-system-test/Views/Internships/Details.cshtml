@@ -1,25 +1,23 @@
 ﻿@model pu_system_test.Models.Internship
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Детайли за стаж";
 }
 
-<h2>Details</h2>
+<h2 class="text-center pt-3 pb-2">Детайли за стаж</h2>
 
-<div>
-    <h4>Internship</h4>
-    <hr />
+<div class="box text-center">
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Firm.FirmName)
+            <label class="control-label">Име</label>
         </dt>
-
+        
         <dd>
             @Html.DisplayFor(model => model.Firm.FirmName)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Spots)
+            <label class="control-label">Места</label>
         </dt>
 
         <dd>
@@ -27,7 +25,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Technologies)
+            <label class="control-label">Технологии</label>
         </dt>
 
         <dd>
@@ -35,8 +33,11 @@
         </dd>
 
     </dl>
+    <hr />
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-12 text-center">
+            @Html.ActionLink("Редактирай", "Edit", new { id = Model.InternshipId }, new { @class = "btn btn-secondary pl-3 pr-3" })
+            @Html.ActionLink("Назад", "Index", new { area = "" }, new { @class = "btn btn-secondary pl-4 pr-4" })
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.InternshipId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

@@ -1,51 +1,47 @@
 ﻿@model pu_system_test.Models.Internship
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Създай стаж";
 }
 
-<h2>Create</h2>
+<h2 class="text-center pt-3 pb-2">Създай стаж</h2>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
-        <h4>Internship</h4>
+    <div class="form-horizontal col-md-8 mx-auto">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.FirmId, "FirmId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            @*@Html.LabelFor(model => model.FirmId, "FirmId", htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-12">
                 @Html.DropDownList("FirmId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.FirmId, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Spots, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Spots, new { htmlAttributes = new { @class = "form-control" } })
+            @*@Html.LabelFor(model => model.Spots, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-12">
+                @Html.EditorFor(model => model.Spots, new { htmlAttributes = new { placeholder = "Места", @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Spots, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Technologies, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Technologies, new { htmlAttributes = new { @class = "form-control" } })
+            @*@Html.LabelFor(model => model.Technologies, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-12">
+                @Html.EditorFor(model => model.Technologies, new { htmlAttributes = new { placeholder = "Технологии", @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Technologies, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+        <div class="form-group mt-5">
+            <div class="col-md-offset-2 col-md-12 text-center">
+                <input type="submit" value="Създай" class="btn btn-success pl-5 pr-5" />
+                @Html.ActionLink("Отказ", "Index", new { area = "" }, new { @class = "btn btn-secondary pl-5 pr-5" })
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

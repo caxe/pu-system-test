@@ -1,53 +1,49 @@
 ﻿@model pu_system_test.Models.Practice
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Редактирай практика";
 }
 
-<h2>Edit</h2>
+<h2 class="text-center pt-3 pb-2">Редактирай практика</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
-        <h4>Practice</h4>
+    <div class="form-horizontal col-md-8 mx-auto">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.PracticeId)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.PracticeName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            @Html.LabelFor(model => model.PracticeName, htmlAttributes: new { placeholder = "Име", @class = "control-label col-md-5" })
+            <div class="col-md-12">
                 @Html.EditorFor(model => model.PracticeName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.PracticeName, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            @Html.LabelFor(model => model.StartDate, htmlAttributes: new { placeholder = "Начална дата", @class = "control-label col-md-5" })
+            <div class="col-md-12">
                 @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            @Html.LabelFor(model => model.EndDate, htmlAttributes: new { placeholder = "Крайна дата", @class = "control-label col-md-5" })
+            <div class="col-md-12">
                 @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+        <div class="form-group mt-5">
+            <div class="col-md-offset-2 col-md-12 text-center">
+                <input type="submit" value="Запиши" class="btn btn-success pl-5 pr-5" />
+                @Html.ActionLink("Отказ", "Index", new { area = "" }, new { @class = "btn btn-secondary pl-5 pr-5" })
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

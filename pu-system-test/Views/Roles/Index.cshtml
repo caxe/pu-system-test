@@ -1,19 +1,25 @@
 ﻿@model IEnumerable<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>
 @{
-	ViewBag.Title = "Roles";
+	ViewBag.Title = "Роли";
 }
 
-<h2>Roles</h2>
-
+<h2 class="text-center pt-3 pb-2">Роли</h2>
+<hr />
 <p>
-	@Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Нова роля", "Create", new { area = "" }, new { @class = "btn btn-success" })
 </p>
 
-<table class="table">
+<table class="table table-dark">
 	<tr>
-		<th>Unique Id</th>
-		<th>Role Name</th>
-		<th></th>
+		<th scope="col">
+            #
+        </th>
+		<th scope="col">
+            Име на роля
+        </th>
+		<th scope="col">
+
+        </th>
 	</tr>
 
 	@foreach (var item in Model)
@@ -22,8 +28,8 @@
 			<td>@Html.DisplayFor(model => item.Id)</td>
 			<td>@Html.DisplayFor(model => item.Name)</td>
 			<td>
-				@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-				@Html.ActionLink("Delete", "Delete", new { id = item.Id })
+				@Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-secondary btn-sm pl-3 pr-3" })
+				@Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm pl-3 pr-3" })
 			</td>
 		</tr>
 	}
